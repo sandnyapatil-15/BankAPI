@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="IFSC">
+          <Key>
+            <PropertyRef Name="Branch_Name" />
+          </Key>
+          <Property Name="Branch_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IFSC_code" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Details">
+          <Key>
+            <PropertyRef Name="Acc_No" />
+          </Key>
+          <Property Name="Acc_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Fname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Mname" Type="varchar" MaxLength="50" />
+          <Property Name="Lname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MobNo" Type="bigint" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Aadhar_No" Type="bigint" Nullable="false" />
+          <Property Name="DOB" Type="date" Nullable="false" />
+          <Property Name="AddressL1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AddressL2" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Landmark" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pincode" Type="int" Nullable="false" />
+          <Property Name="P_Address1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="P_Address2" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="P_Landmark" Type="varchar" MaxLength="100" />
+          <Property Name="P_City" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="P_State" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="P_Pincode" Type="int" Nullable="false" />
+          <Property Name="OccupationType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Src_Income" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="GrossAnnual_Income" Type="money" Nullable="false" />
+          <Property Name="DebitCard" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="NetBanking" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="AccountType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Branch_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="Acc_No" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login_Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Transaction_Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Balance" Type="money" Nullable="false" />
+          <Property Name="Acc_Status" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__User_Deta__Branc__2A4B4B5E">
+          <End Role="IFSC" Type="Self.IFSC" Multiplicity="1" />
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IFSC">
+              <PropertyRef Name="Branch_Name" />
+            </Principal>
+            <Dependent Role="User_Details">
+              <PropertyRef Name="Branch_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserAccou__Acc_N__2F10007B">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="1" />
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="Acc_No" />
+            </Principal>
+            <Dependent Role="UserAccount">
+              <PropertyRef Name="Acc_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BankModelStoreContainer">
+          <EntitySet Name="IFSC" EntityType="Self.IFSC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Details" EntityType="Self.User_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__User_Deta__Branc__2A4B4B5E" Association="Self.FK__User_Deta__Branc__2A4B4B5E">
+            <End Role="IFSC" EntitySet="IFSC" />
+            <End Role="User_Details" EntitySet="User_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserAccou__Acc_N__2F10007B" Association="Self.FK__UserAccou__Acc_N__2F10007B">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="UserAccount" EntitySet="UserAccount" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="IFSC">
+          <Key>
+            <PropertyRef Name="Branch_Name" />
+          </Key>
+          <Property Name="Branch_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IFSC_code" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User_Details" Relationship="Self.FK__User_Deta__Branc__2A4B4B5E" FromRole="IFSC" ToRole="User_Details" />
+        </EntityType>
+        <EntityType Name="User_Details">
+          <Key>
+            <PropertyRef Name="Acc_No" />
+          </Key>
+          <Property Name="Acc_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MobNo" Type="Int64" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Aadhar_No" Type="Int64" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AddressL1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AddressL2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Landmark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pincode" Type="Int32" Nullable="false" />
+          <Property Name="P_Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_Landmark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="P_City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_State" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_Pincode" Type="Int32" Nullable="false" />
+          <Property Name="OccupationType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Src_Income" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GrossAnnual_Income" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DebitCard" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NetBanking" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AccountType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Branch_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="IFSC" Relationship="Self.FK__User_Deta__Branc__2A4B4B5E" FromRole="User_Details" ToRole="IFSC" />
+          <NavigationProperty Name="UserAccounts" Relationship="Self.FK__UserAccou__Acc_N__2F10007B" FromRole="User_Details" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="Acc_No" Type="Int32" Nullable="false" />
+          <Property Name="User_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Login_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Transaction_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Balance" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Acc_Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User_Details" Relationship="Self.FK__UserAccou__Acc_N__2F10007B" FromRole="UserAccount" ToRole="User_Details" />
+        </EntityType>
+        <Association Name="FK__User_Deta__Branc__2A4B4B5E">
+          <End Role="IFSC" Type="Self.IFSC" Multiplicity="1" />
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IFSC">
+              <PropertyRef Name="Branch_Name" />
+            </Principal>
+            <Dependent Role="User_Details">
+              <PropertyRef Name="Branch_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserAccou__Acc_N__2F10007B">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="1" />
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="Acc_No" />
+            </Principal>
+            <Dependent Role="UserAccount">
+              <PropertyRef Name="Acc_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BankEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="IFSCs" EntityType="Self.IFSC" />
+          <EntitySet Name="User_Details" EntityType="Self.User_Details" />
+          <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
+          <AssociationSet Name="FK__User_Deta__Branc__2A4B4B5E" Association="Self.FK__User_Deta__Branc__2A4B4B5E">
+            <End Role="IFSC" EntitySet="IFSCs" />
+            <End Role="User_Details" EntitySet="User_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserAccou__Acc_N__2F10007B" Association="Self.FK__UserAccou__Acc_N__2F10007B">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="UserAccount" EntitySet="UserAccounts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BankModelStoreContainer" CdmEntityContainer="BankEntities">
+          <EntitySetMapping Name="IFSCs">
+            <EntityTypeMapping TypeName="BankModel.IFSC">
+              <MappingFragment StoreEntitySet="IFSC">
+                <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+                <ScalarProperty Name="IFSC_code" ColumnName="IFSC_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Details">
+            <EntityTypeMapping TypeName="BankModel.User_Details">
+              <MappingFragment StoreEntitySet="User_Details">
+                <ScalarProperty Name="Acc_No" ColumnName="Acc_No" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Fname" ColumnName="Fname" />
+                <ScalarProperty Name="Mname" ColumnName="Mname" />
+                <ScalarProperty Name="Lname" ColumnName="Lname" />
+                <ScalarProperty Name="MobNo" ColumnName="MobNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Aadhar_No" ColumnName="Aadhar_No" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="AddressL1" ColumnName="AddressL1" />
+                <ScalarProperty Name="AddressL2" ColumnName="AddressL2" />
+                <ScalarProperty Name="Landmark" ColumnName="Landmark" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="P_Address1" ColumnName="P_Address1" />
+                <ScalarProperty Name="P_Address2" ColumnName="P_Address2" />
+                <ScalarProperty Name="P_Landmark" ColumnName="P_Landmark" />
+                <ScalarProperty Name="P_City" ColumnName="P_City" />
+                <ScalarProperty Name="P_State" ColumnName="P_State" />
+                <ScalarProperty Name="P_Pincode" ColumnName="P_Pincode" />
+                <ScalarProperty Name="OccupationType" ColumnName="OccupationType" />
+                <ScalarProperty Name="Src_Income" ColumnName="Src_Income" />
+                <ScalarProperty Name="GrossAnnual_Income" ColumnName="GrossAnnual_Income" />
+                <ScalarProperty Name="DebitCard" ColumnName="DebitCard" />
+                <ScalarProperty Name="NetBanking" ColumnName="NetBanking" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAccounts">
+            <EntityTypeMapping TypeName="BankModel.UserAccount">
+              <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="Acc_No" ColumnName="Acc_No" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Login_Password" ColumnName="Login_Password" />
+                <ScalarProperty Name="Transaction_Password" ColumnName="Transaction_Password" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Acc_Status" ColumnName="Acc_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
