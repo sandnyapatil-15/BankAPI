@@ -12,16 +12,20 @@ namespace BankAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserAccount
+    public partial class Transfer_Details_Withdraw
     {
+        public string TransactionID { get; set; }
         public int Acc_No { get; set; }
-        public string User_Id { get; set; }
-        public string Login_Password { get; set; }
-        public string Transaction_Password { get; set; }
-        public decimal Balance { get; set; }
-        public string Acc_Status { get; set; }
-        public Nullable<int> Login_Attempts { get; set; }
+        public int Ben_AccNo { get; set; }
+        public string Transaction_Type { get; set; }
+        public System.DateTime Transaction_date { get; set; }
+        public Nullable<System.DateTime> Maturity_Ins { get; set; }
+        public string Remark { get; set; }
+        public decimal Amount { get; set; }
+        public string status { get; set; }
+        public Nullable<decimal> Balance { get; set; }
     
+        public virtual Beneficiary Beneficiary { get; set; }
         public virtual User_Details User_Details { get; set; }
     }
 }

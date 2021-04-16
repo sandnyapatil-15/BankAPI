@@ -16,10 +16,13 @@ namespace BankAPI.Models
     {
         public User_Details()
         {
+            this.Beneficiaries = new HashSet<Beneficiary>();
+            this.Transfer_Details_Withdraw = new HashSet<Transfer_Details_Withdraw>();
             this.UserAccounts = new HashSet<UserAccount>();
         }
     
         public int Acc_No { get; set; }
+        public string Ref_ID { get; set; }
         public string Title { get; set; }
         public string Fname { get; set; }
         public string Mname { get; set; }
@@ -49,7 +52,9 @@ namespace BankAPI.Models
         public string Branch_Name { get; set; }
         public string Status { get; set; }
     
+        public virtual ICollection<Beneficiary> Beneficiaries { get; set; }
         public virtual IFSC IFSC { get; set; }
+        public virtual ICollection<Transfer_Details_Withdraw> Transfer_Details_Withdraw { get; set; }
         public virtual ICollection<UserAccount> UserAccounts { get; set; }
     }
 }

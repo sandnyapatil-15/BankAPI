@@ -12,16 +12,12 @@ namespace BankAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserAccount
+    public partial class Admin
     {
-        public int Acc_No { get; set; }
-        public string User_Id { get; set; }
-        public string Login_Password { get; set; }
-        public string Transaction_Password { get; set; }
-        public decimal Balance { get; set; }
-        public string Acc_Status { get; set; }
-        public Nullable<int> Login_Attempts { get; set; }
-    
-        public virtual User_Details User_Details { get; set; }
+        public int PSNo { get; set; }
+        public string AdminName { get; set; }
+        public string Admin_Password { get; set; }
+        public long Contact_No { get; set; }
+        public string AdminEmail { get; set; }
     }
 }

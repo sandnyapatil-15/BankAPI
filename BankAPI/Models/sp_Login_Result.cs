@@ -10,9 +10,8 @@
 namespace BankAPI.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class UserAccount
+    public partial class sp_Login_Result
     {
         public int Acc_No { get; set; }
         public string User_Id { get; set; }
@@ -21,7 +20,5 @@ namespace BankAPI.Models
         public decimal Balance { get; set; }
         public string Acc_Status { get; set; }
         public Nullable<int> Login_Attempts { get; set; }
-    
-        public virtual User_Details User_Details { get; set; }
     }
 }

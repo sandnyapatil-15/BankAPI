@@ -4,11 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7a52705e3c3a4de3a8338cfcd5b75987" Name="Diagram1">
-        <EntityTypeShape EntityType="BankModel.IFSC" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BankModel.User_Details" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BankModel.UserAccount" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+      <Diagram DiagramId="faa3e6a548004cf08676e39346178181" Name="Diagram1">
+        <EntityTypeShape EntityType="BankModel.Admin" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.Beneficiary" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.IFSC" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.Transfer_Details_Deposit" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.Transfer_Details_Withdraw" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.User_Details" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.UserAccount" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="BankModel.FK__Beneficia__User___34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.FK__Transfer___Ben_A__38996AB5" ManuallyRouted="false" />
         <AssociationConnector Association="BankModel.FK__User_Deta__Branc__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.FK__Transfer___Acc_N__37A5467C" ManuallyRouted="false" />
         <AssociationConnector Association="BankModel.FK__UserAccou__Acc_N__2F10007B" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

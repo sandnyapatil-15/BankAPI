@@ -12,16 +12,21 @@ namespace BankAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserAccount
+    public partial class Beneficiary
     {
-        public int Acc_No { get; set; }
-        public string User_Id { get; set; }
-        public string Login_Password { get; set; }
-        public string Transaction_Password { get; set; }
-        public decimal Balance { get; set; }
-        public string Acc_Status { get; set; }
-        public Nullable<int> Login_Attempts { get; set; }
+        public Beneficiary()
+        {
+            this.Transfer_Details_Withdraw = new HashSet<Transfer_Details_Withdraw>();
+        }
+    
+        public int Ben_AccNo { get; set; }
+        public int User_AccNo { get; set; }
+        public string Ben_Name { get; set; }
+        public string Ben_NickName { get; set; }
+        public string Ben_Banktype { get; set; }
+        public string IFSC_code { get; set; }
     
         public virtual User_Details User_Details { get; set; }
+        public virtual ICollection<Transfer_Details_Withdraw> Transfer_Details_Withdraw { get; set; }
     }
 }
