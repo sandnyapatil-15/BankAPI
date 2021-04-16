@@ -36,7 +36,7 @@ namespace BankAPI.Controllers
             return result;
         }*/
 
-        [Route("api/AdminAPI/GetAllRegistrations")]
+        [Route("api/AdminAPI/GetAllRegistrationsbyStatus")]
 
         [HttpGet]
         public IEnumerable<User_Details> Get()
@@ -53,36 +53,65 @@ namespace BankAPI.Controllers
             }
         }
 
-      /*  [Route("api/AdminAPI/UpdateStatus/{id}")]
-        [HttpPut]
-        public bool Put(int id, [FromBody] User_Details newsts)
+        /*  [Route("api/AdminAPI/UpdateStatus/{id}")]
+          [HttpPut]
+          public bool Put(int id, [FromBody] User_Details newsts)
+          {
+              try
+              {
+                  var olddata = db.User_Details.Where(x => x.Acc_No == id).SingleOrDefault();
+                  if (olddata == null)
+                      throw new Exception("Invalid Data");
+                  else
+                  {
+                      olddata.A_Status = .EmpID;
+                      olddata.EmpName = newemp.EmpName;
+                      olddata.Desg = newemp.Desg;
+                      olddata.Dept = newemp.Dept;
+                      olddata.Salary = newemp.Salary;
+                      olddata.password = newemp.password;
+                      olddata.projid = newemp.projid;
+                      var res = db.SaveChanges();
+                      if (res > 0)
+                          return true;
+                  }
+              }
+              catch (Exception e)
+              {
+                  throw e;
+              }
+              return false;
+          }*/
+        [Route("api/AdminAPI/GetAllRegistrations")]
+        [HttpGet]
+        public IEnumerable<User_Details> Getcustomers()
         {
             try
             {
-                var olddata = db.User_Details.Where(x => x.Acc_No == id).SingleOrDefault();
-                if (olddata == null)
+                return db.User_Details.ToList();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [Route("api/AdminAPI/GetAllRegistrationsbyaccno/{accno}")]
+        [HttpGet]
+        public User_Details Get(int accno)
+        {
+            try
+            {
+                var data = db.User_Details.Where(x => x.Acc_No == accno).SingleOrDefault();
+                if (data == null)
                     throw new Exception("Invalid Data");
                 else
-                {
-                    olddata.A_Status = .EmpID;
-                    olddata.EmpName = newemp.EmpName;
-                    olddata.Desg = newemp.Desg;
-                    olddata.Dept = newemp.Dept;
-                    olddata.Salary = newemp.Salary;
-                    olddata.password = newemp.password;
-                    olddata.projid = newemp.projid;
-                    var res = db.SaveChanges();
-                    if (res > 0)
-                        return true;
-                }
+                    return data;
             }
             catch (Exception e)
             {
                 throw e;
             }
-            return false;
-        }*/
-        
-
+        }
     }
 }

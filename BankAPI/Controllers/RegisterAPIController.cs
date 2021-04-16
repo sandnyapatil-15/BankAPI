@@ -64,7 +64,7 @@ namespace BankAPI.Controllers
                 }
                 else
                 {
-                    return "Login Successful";
+                    return res.Acc_No.ToString() ;
                 }
         }
             catch (Exception e)
@@ -206,6 +206,25 @@ namespace BankAPI.Controllers
             }
         }
 
+        [Route("api/RegisterAPI/InsertBen")]
+        [HttpPost]
+        public bool Post([FromBody] Beneficiary b)
+        {
+            try
+            {
+                db.Beneficiaries.Add(b);
+                var res = db.SaveChanges();
+                if (res > 0)
+                    return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return false;
+        }
+
+        
 
     }
 }
